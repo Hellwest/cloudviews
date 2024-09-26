@@ -22,7 +22,7 @@ http.createServer((req, res) => {
 	if (req.url === '/' && req.method === 'GET') {
 		const fileNames = []
 		const files = fs.readdirSync(CONTENT_FOLDER_NAME)
-		files.forEach((filename) => fileNames.push(filename))
+		files.forEach((filename) => { if (filename !== '.gitkeep') fileNames.push(filename) })
 
 		res.writeHead(200, { 'Content-Type': 'application/json' })
 		res.write(JSON.stringify({ "items": fileNames }))
