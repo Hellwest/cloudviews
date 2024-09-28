@@ -5,6 +5,13 @@ const CONTENT_FOLDER_NAME = './public'
 const APP_PORT = 8000
 
 http.createServer((req, res) => {
+	const headers = new Headers({
+		'Access-Control-Allow-Origin': '*',
+		'Access-Control-Allow-Methods': 'GET',
+		'Access-Control-Max-Age-': 2592000,
+	})
+	res.setHeaders(headers)
+
 	req.on('error', (error) => {
 		console.error(error)
 		res.statusCode = 400
